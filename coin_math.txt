@@ -1,0 +1,24 @@
+pd.to_datetime(c.groupby(['Date'])['Date_Time'].max())-pd.to_datetime(c.groupby(['Date'])['Date_Time'].min())c.groupby(['Date'])['#Coins'].min()-c.groupby(['Date'])['#Coins'].max()
+
+cc = pd.read_csv('cc_data.csv')
+cc['Diff'] = cc['Diff'].astype(float)
+cc.grouby(by='Date').sum()
+
+#Convert Date and Date_Time to datetime object
+#usint date time for string
+dt.datetime.strptime(dd, '%Y-%m-%d %H:%M:%S.%f') 
+delta = dt.datetime.strptime(dd1, '%Y-%m-%d %H:%M:%S.%f') - dt.datetime.strptime(dd, '%Y-%m-%d %H:%M:%S.%f') 
+delta.total_seconds()
+
+#Convert Date and Date time to datetime object
+#using pd function
+df = pd.read_csv('cc_data.csv')
+dfC = df[1:].copy()
+dfC['DateTime'] = pd.to_datetime(dfC['Date']+' '+dfC['Date_Time'],format='%Y-%m-%d %H:%M:%S.%f')
+
+dfC['TimeDiff']=dfC['DateTime'].diff()
+dfC['TimeDiff_Min'] = dfC['TimeDiff'].dt.total_seconds()/60
+dfC[dfC['TimeDiff_Min']<45].groupby('Date').sum()['TimeDiff_Min']
+
+ccD = dfC[dfC['TimeDiff_Min']<80].groupby('Date').sum()['Diff']
+ccT = dfC[dfC['TimeDiff_Min']<80].groupby('Date').sum()['TimeDiff_Min']      
