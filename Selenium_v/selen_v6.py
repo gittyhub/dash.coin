@@ -13,10 +13,10 @@ import pandas as pd
 
 count = 0
 break_count = 0
-while count < 20: #5hrs
+while count < 40: #5hrs
   try:
     s=Service('/home/hman/Downloads/chromedriver')  
-    cc = pd.read_csv('/home/hman/Documents/Coin_Count/cc_data.csv')
+    cc = pd.read_csv('/home/hman/Documents/dash.coin/cc_data.csv')
     path = '/home/hman/Downloads/chromedriver'  # Optional argument, if not specified will search path.
     site = 'https://unmineable.com/coins/SHIB/address/0x46406393e7364889c3113e0760b4a7a729111fc2'
     driver = webdriver.Chrome(service=s)  # Optional argument, if not specified will search path.
@@ -36,7 +36,7 @@ while count < 20: #5hrs
     cc.loc[len_cc] = ls
     count += 1
     print(ls)
-    cc.to_csv('/home/hman/Documents/Coin_Count/cc_data.csv',index=False) 
+    cc.to_csv('/home/hman/Documents/dash.coin/cc_data.csv',index=False) 
     driver.quit()
     time.sleep(60*15)
   except Exception as e:
